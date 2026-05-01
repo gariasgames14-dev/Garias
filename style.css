@@ -1,0 +1,118 @@
+/* Geral */
+body {
+    background-color: #2b2b2b;
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    color: white;
+}
+
+/* Header */
+.header {
+    background-color: #6a1b9a;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 30px;
+    border-bottom: 3px solid #000;
+}
+
+.logo-container { display: flex; align-items: center; gap: 15px; }
+.main-logo { width: 55px; height: 55px; }
+.brand-name { color: #4a90e2; font-size: 38px; margin: 0; font-weight: bold; }
+
+.btn-apoio {
+    background-color: #2ecc71;
+    color: #000;
+    border: 2px solid #000;
+    padding: 10px 20px;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+/* Pesquisa */
+.search-section { display: flex; justify-content: center; padding: 40px 20px; }
+.search-bar {
+    background: white; width: 100%; max-width: 600px;
+    border-radius: 50px; padding: 12px 25px;
+    display: flex; align-items: center; border: 2px solid #000;
+}
+.search-bar input { border: none; outline: none; width: 100%; font-size: 18px; margin-left: 10px; color: #333; }
+
+/* Lista de Jogos - CORREÇÃO DO ALINHAMENTO */
+.content-area { text-align: center; padding: 20px; }
+.section-title { color: #4a90e2; border-bottom: 2px solid #4a90e2; display: inline-block; padding-bottom: 5px; }
+
+.game-list { 
+    list-style: none; 
+    padding: 0; 
+    margin: 30px 0; 
+    display: flex; 
+    justify-content: center; /* Centraliza o conteúdo horizontalmente */
+    width: 100%;
+}
+
+#noGameMsg {
+    color: #888;
+    font-size: 18px;
+    text-align: center;
+    width: 100%;
+}
+
+/* Modal */
+.modal { 
+    display: none; 
+    position: fixed; 
+    z-index: 100; 
+    left: 0; 
+    top: 0; 
+    width: 100%; 
+    height: 100%; 
+    background: rgba(0,0,0,0.8); 
+    overflow-y: auto; /* Permite rolar se o formulário for grande em telas pequenas */
+}
+
+.modal-content {
+    background: #333; 
+    margin: 5% auto; 
+    padding: 25px;
+    border: 2px solid #4a90e2; 
+    width: 90%; 
+    max-width: 400px; 
+    text-align: center; 
+    border-radius: 10px; 
+    position: relative;
+}
+
+.close { position: absolute; right: 15px; top: 10px; color: #aaa; font-size: 28px; cursor: pointer; }
+
+/* Formulário de Ideias */
+#ideia-form { display: flex; flex-direction: column; gap: 12px; margin-top: 15px; }
+
+#ideia-form input, #ideia-form textarea {
+    background-color: #222; 
+    border: 1px solid #4a90e2; 
+    color: white;
+    padding: 12px; 
+    border-radius: 5px; 
+    font-family: inherit;
+}
+
+#ideia-form textarea { height: 100px; resize: none; }
+
+.btn-enviar-ideia {
+    background: #2ecc71; 
+    color: black; 
+    border: none; 
+    padding: 15px;
+    font-weight: bold; 
+    cursor: pointer; 
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+/* Apoio Pix */
+.qr-code-img { width: 180px; height: 180px; margin: 15px 0; border: 4px solid white; border-radius: 5px; }
+.pix-key-container { background: #222; padding: 10px; border-radius: 5px; margin-top: 10px; }
+code { display: block; margin-bottom: 10px; color: #2ecc71; font-size: 12px; word-break: break-all; }
+.btn-copy { background: #4a90e2; border: none; color: white; padding: 8px 15px; cursor: pointer; border-radius: 5px; font-weight: bold; }
