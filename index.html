@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Garias - A Nova Fronteira Digital</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header class="header">
+        <div class="logo-container">
+            <img src="logo.png" alt="Garias Logo" class="main-logo">
+            <h1 class="brand-name">Garias</h1>
+        </div>
+        <button class="btn-apoio" id="btnApoio">Nos apoie!</button>
+    </header>
+
+    <section class="search-section">
+        <div class="search-bar">
+            <span class="search-icon">🔍</span>
+            <input type="text" placeholder="pesquise o nome do jogo" id="gameSearch">
+        </div>
+    </section>
+
+    <main class="content-area">
+        <h2 class="section-title">Nossos Jogos</h2>
+        <ul class="game-list" id="gameList">
+            <p id="noGameMsg" style="color: #888;">Em breve, novos jogos !</p>
+        </ul>
+    </main>
+
+    <div id="modalApoio" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Apoie o Projeto Garias</h2>
+            <p>Escaneie para contribuir via Pix:</p>
+            <img src="QR.jpeg" alt="QR Code Pix" class="qr-code-img">
+            <div class="pix-key-container">
+                <code id="pixKey">713cf2f2-4771-4c2c-a5d1-4d913ec2969a</code>
+                <button onclick="copyPix()" class="btn-copy">Copiar Chave</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
