@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Garias - A Nova Fronteira Digital</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header class="header">
+        <div class="logo-container">
+            <img src="logo.png" alt="Garias Logo" class="main-logo">
+            <h1 class="brand-name">Garias</h1>
+        </div>
+        <button class="btn-apoio" id="btnApoio">Nos apoie!</button>
+    </header>
+
+    <section class="search-section">
+        <div class="search-bar">
+            <span class="search-icon">🔍</span>
+            <input type="text" placeholder="pesquise o nome do jogo" id="gameSearch">
+        </div>
+    </section>
+
+    <main class="content-area">
+        <h2 class="section-title">Nossos Jogos</h2>
+        <ul class="game-list" id="gameList">
+            <li id="noGameMsg">Em breve, novos jogos !</li>
+        </ul>
+    </main>
+
+    <div id="modalApoio" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2 style="color: #4a90e2; margin-bottom: 5px;">PROJETO GARIAS</h2>
+            
+            <p style="font-size: 14px; line-height: 1.4; margin-bottom: 20px; color: #ddd;">
+                Você pode ajudar o Garias a crescer! <br>
+                <strong>Mande sua ideia de jogo ou script abaixo.</strong> <br>
+                Se sua sugestão for aprovada para o site, você recebe um Pix!
+            </p>
+
+            <form id="ideia-form">
+                <input type="text" name="nome" placeholder="Seu Nome ou Apelido" required>
+                
+                <textarea name="ideia" placeholder="Descreva detalhadamente sua ideia de jogo ou script aqui..." required></textarea>
+                
+                <p style="color: #6a1b9a; font-weight: bold; font-size: 12px; text-align: left; margin: 10px 0 5px 0;">Dados Pix para seu recebimento:</p>
+                <input type="text" name="pix_usuario" placeholder="Sua Chave Pix" required>
+                <input type="text" name="titular" placeholder="Nome Completo do Titular" required>
+                
+                <button type="submit" class="btn-enviar-ideia" id="btnEnviar">ENVIAR MINHA IDEIA</button>
+            </form>
+            
+            <div id="status-envio" style="margin-top: 10px; font-weight: bold; font-size: 14px;"></div>
+
+            <hr style="border: 0; border-top: 1px solid #444; margin: 25px 0;">
+
+            <p style="font-size: 14px; font-weight: bold;">Ou apoie o desenvolvedor:</p>
+            <img src="QR.jpeg" alt="QR Code Pix" class="qr-code-img">
+            <div class="pix-key-container">
+                <code id="pixKey">713cf2f2-4771-4c2c-a5d1-4d913ec2969a</code>
+                <button onclick="copyPix()" class="btn-copy">Copiar Chave</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
