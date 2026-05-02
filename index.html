@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Garias - Biblioteca de Jogos</title>
+    <style>
+        /* --- ESTÉTICA GARIAS --- */
+        body {
+            background-color: #2b2b2b;
+            margin: 0;
+            font-family: 'Segoe UI', sans-serif;
+            color: white;
+            overflow-x: hidden;
+        }
+
+        /* Header */
+        .header {
+            background-color: #6a1b9a;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 30px;
+            border-bottom: 3px solid #000;
+        }
+
+        .logo-container { display: flex; align-items: center; gap: 15px; }
+        .main-logo { width: 55px; height: 55px; }
+        .brand-name { color: #4a90e2; font-size: 38px; margin: 0; font-weight: bold; }
+
+        .btn-apoio {
+            background-color: #2ecc71;
+            color: #000;
+            border: 2px solid #000;
+            padding: 10px 20px;
+            font-weight: bold;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+
+        /* Seção de Busca e Conteúdo Principal */
+        #home-screen { display: block; }
+        
+        .search-section { display: flex; justify-content: center; padding: 40px 20px; }
+        .search-bar {
+            background: white; width: 100%; max-width: 600px;
+            border-radius: 50px; padding: 12px 25px;
+            display: flex; align-items: center; border: 2px solid #000;
+        }
+        .search-bar input { border: none; outline: none; width: 100%; font-size: 18px; margin-left: 10px; color: #333; }
+
+        .content-area { text-align: center; padding: 20px; }
+        .section-title { color: #4a90e2; border-bottom: 2px solid #4a90e2; display: inline-block; padding-bottom: 5px; margin-bottom: 30px; }
+
+        .game-list { 
+            list-style: none; padding: 0; margin: 0 auto; 
+            display: flex; flex-wrap: wrap; justify-content: center; gap: 20px;
+            max-width: 1100px;
+        }
+
+        .game-card {
+            background: #333;
+            border: 2px solid #4a90e2;
+            padding: 20px;
+            border-radius: 10px;
+            width: 200px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .game-title { font-weight: bold; font-size: 16px; min-height: 40px; display: flex; align-items: center; text-align: center; }
+
+        .btn-jogar {
+            background-color: #2ecc71;
+            color: black;
+            border: 2px solid #000;
+            padding: 8px 20px;
+            font-weight: bold;
+            cursor: pointer;
+            border-radius: 4px;
+            width: 100%;
+        }
+
+        /* --- TELA DE JOGO (IFRAME) --- */
+        #game-screen { display: none; width: 100%; height: 100vh; flex-direction: column; }
+        
+        .nav-bar-game { background: #6a1b9a; padding: 15px; border-bottom: 2px solid #000; display: flex; align-items: center; }
+        .btn-voltar { background: #4a90e2; color: white; border: 2px solid #000; padding: 8px 20px; cursor: pointer; font-weight: bold; border-radius: 4px; font-size: 14px; }
+        .game-info { margin-left: 20px; font-weight: bold; font-size: 18px; color: #fff; }
+        
+        .game-container { flex-grow: 1; border: none; width: 100%; height: 100%; background: white; }
+
+        /* MODAL PIX */
+        .modal { display: none; position: fixed; z-index: 100; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); overflow-y: auto; }
+        .modal-content { background: #333; margin: 10% auto; padding: 25px; border: 2px solid #4a90e2; width: 90%; max-width: 350px; text-align: center; border-radius: 10px; position: relative; }
+        .close { position: absolute; right: 15px; top: 10px; color: #aaa; font-size: 28px; cursor: pointer; }
+        .qr-code-img { width: 200px; height: 200px; margin: 15px 0; border: 4px solid white; border-radius: 5px; }
+        .pix-key-container { background: #222; padding: 10px; border-radius: 5px; margin-top: 10px; }
+        code { display: block; margin-bottom: 10px; color: #2ecc71; font-size: 12px; word-break: break-all; }
+        .btn-copy { background: #4a90e2; border: none; color: white; padding: 8px 15px; cursor: pointer; border-radius: 5px; font-weight: bold; }
+    </style>
+</head>
+<body>
+
+    <div id="home-screen">
+        <header class="header">
+            <div class="logo-container">
+                <img src="logo.png" alt="Garias Logo" class="main-logo">
+                <h1 class="brand-name">Garias</h1>
+            </div>
+            <button class="btn-apoio" id="btnApoio">Apoie o canal!</button>
+        </header>
+
+        <section class="search-section">
+            <div class="search-bar">
+                <span class="search-icon">🔍</span>
+                <input type="text" placeholder="pesquise o nome do jogo" id="gameSearch">
+            </div>
+        </section>
+
+        <main class="content-area">
+            <h2 class="section-title">Minha Biblioteca de Jogos</h2>
+            <ul class="game-list" id="gameList">
+                <li class="game-card"><span class="game-title">Jogo da Cobrinha</span><button class="btn-jogar" onclick="iniciarJogo('cobrinha')">JOGAR</button></li>
+                <li class="game-card"><span class="game-title">Jogo da Velha</span><button class="btn-jogar" onclick="iniciarJogo('velha')">JOGAR</button></li>
+                <li class="game-card"><span class="game-title">Pedra, Papel e Tesoura</span><button class="btn-jogar" onclick="iniciarJogo('ppt')">JOGAR</button></li>
+                <li class="game-card"><span class="game-title">Flappy Bird</span><button class="btn-jogar" onclick="iniciarJogo('flappy')">JOGAR</button></li>
+                <li class="game-card"><span class="game-title">Blocks (Tetris)</span><button class="btn-jogar" onclick="iniciarJogo('blocks')">JOGAR</button></li>
+                <li class="game-card"><span class="game-title">Invasores do Espaço</span><button class="btn-jogar" onclick="iniciarJogo('invasores')">JOGAR</button></li>
+                <li class="game-card"><span class="game-title">Breakout</span><button class="btn-jogar" onclick="iniciarJogo('breakout')">JOGAR</button></li>
+                <li class="game-card"><span class="game-title">Campo Minado</span><button class="btn-jogar" onclick="iniciarJogo('campo-minado')">JOGAR</button></li>
+                <li class="game-card"><span class="game-title">Damas</span><button class="btn-jogar" onclick="iniciarJogo('dama')">JOGAR</button></li>
+                <li class="game-card"><span class="game-title">Batalha Naval</span><button class="btn-jogar" onclick="iniciarJogo('batalha-naval')">JOGAR</button></li>
+            </ul>
+        </main>
+    </div>
+
+    <div id="game-screen">
+        <div class="nav-bar-game">
+            <button class="btn-voltar" onclick="fecharJogo()">← VOLTAR</button>
+            <span id="nomeJogoAtivo" class="game-info"></span>
+        </div>
+        <iframe id="gameFrame" class="game-container" src=""></iframe>
+    </div>
+
+    <div id="modalApoio" class="modal">
+        <div class="modal-content">
+            <span class="close" id="closeModal">&times;</span>
+            <h2 style="color: #4a90e2; margin-bottom: 10px;">APOIE O DESENVOLVEDOR</h2>
+            <img src="QR.jpeg" alt="QR Code Pix" class="qr-code-img">
+            <div class="pix-key-container">
+                <code id="pixKey">713cf2f2-4771-4c2c-a5d1-4d913ec2969a</code>
+                <button onclick="copyPix()" class="btn-copy">Copiar Chave Pix</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // --- LÓGICA DE NAVEGAÇÃO ---
+        const home = document.getElementById('home-screen');
+        const gameScreen = document.getElementById('game-screen');
+        const frame = document.getElementById('gameFrame');
+        const tituloAtivo = document.getElementById('nomeJogoAtivo');
+
+        const repoBase = "https://gariasgames14-dev.github.io/";
+
+        const games = {
+            'cobrinha': { nome: 'Jogo da Cobrinha', url: repoBase + 'Jogo-da-cobrinha/' },
+            'velha': { nome: 'Jogo da Velha', url: repoBase + 'jogo-da-velha/' },
+            'ppt': { nome: 'Pedra, Papel e Tesoura', url: repoBase + 'Pedra-papel-tesoura/' },
+            'flappy': { nome: 'Flappy Bird', url: repoBase + 'Flappy-Bird-/' },
+            'blocks': { nome: 'Blocks (Tetris)', url: repoBase + 'Blocks/' },
+            'invasores': { nome: 'Invasores do Espaço', url: repoBase + 'Invasores-do-Espa-o/' },
+            'breakout': { nome: 'Breakout', url: repoBase + 'Breakout/' },
+            'campo-minado': { nome: 'Campo Minado', url: repoBase + 'Campo-minado/' },
+            'dama': { nome: 'Damas', url: repoBase + 'dama/' },
+            'batalha-naval': { nome: 'Batalha Naval', url: repoBase + 'Batalha-naval/' }
+        };
+
+        function iniciarJogo(id) {
+            if (games[id]) {
+                home.style.display = 'none';
+                gameScreen.style.display = 'flex';
+                frame.src = games[id].url;
+                tituloAtivo.innerText = games[id].nome;
+                window.scrollTo(0,0);
+            }
+        }
+
+        function fecharJogo() {
+            home.style.display = 'block';
+            gameScreen.style.display = 'none';
+            frame.src = ""; // Para o jogo parar de rodar no fundo
+        }
+
+        // --- BUSCA ---
+        document.getElementById('gameSearch').addEventListener('input', (e) => {
+            const termo = e.target.value.toLowerCase();
+            const cards = document.querySelectorAll('.game-card');
+            cards.forEach(card => {
+                const titulo = card.querySelector('.game-title').innerText.toLowerCase();
+                card.style.display = titulo.includes(termo) ? "flex" : "none";
+            });
+        });
+
+        // --- MODAL E PIX ---
+        const modal = document.getElementById("modalApoio");
+        document.getElementById("btnApoio").onclick = () => modal.style.display = "block";
+        document.getElementById("closeModal").onclick = () => modal.style.display = "none";
+        window.onclick = (e) => { if (e.target == modal) modal.style.display = "none"; }
+
+        function copyPix() {
+            const key = document.getElementById("pixKey").innerText;
+            navigator.clipboard.writeText(key).then(() => alert("Chave Pix copiada!"));
+        }
+    </script>
+</body>
+</html>
